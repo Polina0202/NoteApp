@@ -44,7 +44,10 @@ namespace NoteApp
         /// </summary>
         public string Title
         {
-            get { return _title; }
+            get
+            {
+                return _title;
+            }
             set
             {
                 if (value.Length > 50)
@@ -58,7 +61,7 @@ namespace NoteApp
                         _title = value;
                     }
                     else _title = "Без названия";
-                    ChangeTime = DateTime.Now;
+                    Creation = DateTime.Now;
                 }
             }
         }
@@ -66,9 +69,12 @@ namespace NoteApp
         /// <summary>
         /// Свойство для записи времени последнего изменения.
         /// </summary
-        public DateTime ChangeTime
+        public DateTime Creation
         {
-            get { return _changeTime; }
+            get
+            {
+                return _changeTime;
+            }
             set
             {
                 _changeTime = DateTime.Now;
@@ -85,7 +91,7 @@ namespace NoteApp
             set
             {
                 _category = value;
-                ChangeTime = DateTime.Now;
+                Creation = DateTime.Now;
             }
         }
 
@@ -95,11 +101,14 @@ namespace NoteApp
         /// </summary>
         public string Content
         {
-            get { return _content; }
+            get
+            {
+                return _content;
+            }
             set
             {
                 _content = value;
-                ChangeTime = DateTime.Now;
+                Creation = DateTime.Now;
             }
         }
 
@@ -116,7 +125,10 @@ namespace NoteApp
         /// </summary>
         public DateTime UpdateTime
         {
-            get { return _changeTime; }
+            get
+            {
+                return _changeTime;
+            }
             set
             {
                 _changeTime = DateTime.Now;
@@ -133,7 +145,7 @@ namespace NoteApp
             {
                 Title = this.Title,
                 Content = this.Content,
-                ChangeTime = this.ChangeTime,
+                Creation = this.Creation,
                 Category = this.Category
             };
         }

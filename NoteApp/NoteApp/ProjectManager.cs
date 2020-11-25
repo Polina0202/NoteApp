@@ -22,12 +22,12 @@ namespace NoteApp
         /// <summary>
         /// Путь до папки сохранения.
         /// </summary>
-        public static string savefile = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/NoteApp/";
+        public static string Savefile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/NoteApp/";
 
         /// <summary>
         /// Полный путь до файла.
         /// </summary>
-        private static string filepath = Path.Combine(savefile, FileName);
+        private static string filepath = Path.Combine(Savefile, FileName);
 
         /// <summary>
         /// Сериализации данных.

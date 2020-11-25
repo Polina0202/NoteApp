@@ -39,14 +39,14 @@ namespace NoteAppUI
             NoteCategory selectedNoteCategory;
             selectedNoteCategory = (NoteCategory)CategoryBox1.SelectedIndex;
             Note.Category = selectedNoteCategory;
-            Note.ChangeTime = DateTime.Now;
+            Note.Creation = DateTime.Now;
 
             //Сериализация
             Project serelProject = new Project { Notes = { Note } };
-            ProjectManager.SaveToFile(serelProject, ProjectManager.savefile);
+            ProjectManager.SaveToFile(serelProject, ProjectManager.Savefile);
 
             //Десериализация
-            Project deserProject = ProjectManager.LoadFromFile(ProjectManager.savefile);
+            Project deserProject = ProjectManager.LoadFromFile(ProjectManager.Savefile);
 
             MessageBox.Show("Заметка сохранена");
         }
