@@ -30,7 +30,7 @@ namespace NoteApp
         /// <summary>
         /// Время создания
         /// </summary>
-        private readonly DateTime _сreationTime = DateTime.Now;
+        private DateTime _сreationTime = DateTime.Now;
 
         /// <summary>
         ///Время изменения
@@ -61,7 +61,6 @@ namespace NoteApp
                         _title = value;
                     }
                     else _title = "Без названия";
-                    Creation = DateTime.Now;
                 }
             }
         }
@@ -77,21 +76,22 @@ namespace NoteApp
             }
             set
             {
-                _changeTime = DateTime.Now;
+                _changeTime = value;
             }
         }
-
         /// <summary>
         /// Свойство категории заметки.
         /// Изменяет время последнего изменение при смене категории.
         /// </summary>
         public NoteCategory Category
         {
-            get { return _category; }
+            get
+            {
+                return _category;
+            }
             set
             {
                 _category = value;
-                Creation = DateTime.Now;
             }
         }
 
@@ -108,7 +108,6 @@ namespace NoteApp
             set
             {
                 _content = value;
-                Creation = DateTime.Now;
             }
         }
 
@@ -117,7 +116,14 @@ namespace NoteApp
         /// </summary>
         public DateTime CreationTime
         {
-            get { return _сreationTime; }
+            get
+            {
+                return _сreationTime;
+            }
+            set
+            {
+                _сreationTime = value;
+            }
         }
 
         /// <summary>
@@ -131,7 +137,7 @@ namespace NoteApp
             }
             set
             {
-                _changeTime = DateTime.Now;
+                _changeTime = value;
             }
         }
 
@@ -145,7 +151,7 @@ namespace NoteApp
             {
                 Title = this.Title,
                 Content = this.Content,
-                Creation = this.Creation,
+                UpdateTime = this.UpdateTime,
                 Category = this.Category
             };
         }

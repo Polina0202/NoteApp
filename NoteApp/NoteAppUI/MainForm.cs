@@ -11,44 +11,209 @@ using NoteApp;
 
 namespace NoteAppUI
 {
-    /// <summary>
-    /// Класс взаимодействия MainForm.
-    /// </summary>
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Переменная для хранения всех заметок проекта.
+        /// </summary>
+        private Project _project;
+
         public MainForm()
         {
             InitializeComponent();
+            dateTimeCreate.CustomFormat = "HH:mm  dd.MMM.2kyy";
+            dateTimeUpdate.CustomFormat = "HH:mm  dd.MMM.2kyy";
+            this.Text = "Коллекция ваших заметок";
+
+            pictureCreateBox.Cursor = Cursors.Hand;
+            pictureEditBox.Cursor = Cursors.Hand;
+            pictureDeleteBox.Cursor = Cursors.Hand;
+
             foreach (int i in Enum.GetValues(typeof(NoteCategory)))
-                 CategoryBox1.Items.Add(Enum.GetName(typeof(NoteCategory), i));
+                CategoryBox1.Items.Add(Enum.GetName(typeof(NoteCategory), i));
             CategoryBox1.SelectedIndex = 0;
+
+            CategoryBox1.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        /// <summary>
+        /// Путь к папке с файлом заметок.
+        /// </summary>
+        private readonly string _filePath = ProjectManager.Savefile;
+
+        /// <summary>
+        /// Функция добавление новой заметки в коллекцию.
+        /// </summary>
+        private void NoteAdd()
         {
+            var note = new Edit();
+            
+            if (note.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+            _project.Notes.Add(note.Storage);
+            listNoteBox.Items.Add(note.Storage.Title);
+            ProjectManager.SaveToFile(_project, _filePath);
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Функция для редактирование заметки
+        /// </summary>
+        private void NoteEdit()
         {
-            //Создаем заметка
-            Note Note = new Note();
+            if (listNoteBox.SelectedIndex == -1)
+            {
+                errorLabel.Text = "Не выбрана заметка для редактирования";
+                errorLabel.BackColor = Color.Tomato;
+            }
+            else
+            {
+                errorLabel.Visible = false;
+                var selectIndex = listNoteBox.SelectedIndex;
+                var selectNote = _project.Notes[selectIndex];
 
-            //Записываем информацию с формы
-            Note.Title = textBox1.Text;
-            Note.Content = textBox2.Text;
-            NoteCategory selectedNoteCategory;
-            selectedNoteCategory = (NoteCategory)CategoryBox1.SelectedIndex;
-            Note.Category = selectedNoteCategory;
-            Note.Creation = DateTime.Now;
-
-            //Сериализация
-            Project serelProject = new Project { Notes = { Note } };
-            ProjectManager.SaveToFile(serelProject, ProjectManager.Savefile);
-
-            //Десериализация
-            Project deserProject = ProjectManager.LoadFromFile(ProjectManager.Savefile);
-
-            MessageBox.Show("Заметка сохранена");
+                var updateNote = new Edit { Storage = selectNote };
+                var dialogResult = updateNote.ShowDialog();
+                if (dialogResult != DialogResult.OK)
+                {
+                    return;
+                }
+                _project.Notes.RemoveAt(selectIndex);
+                listNoteBox.Items.RemoveAt(selectIndex);
+                _project.Notes.Insert(selectIndex, updateNote.Storage);
+                listNoteBox.Items.Insert(selectIndex, updateNote.Storage.Title);
+                listNoteBox.SelectedIndex = selectIndex;
+                ProjectManager.SaveToFile(_project, _filePath);
+            }
         }
+
+        /// <summary>
+        /// Функция для удаления заметки
+        /// </summary>
+        private void NoteDelete()
+        {
+            if (listNoteBox.SelectedIndex == -1)
+            {
+                errorLabel.Text = "Не выбрана заметка для удаления";
+                errorLabel.BackColor = Color.Tomato;
+            }
+            else
+            {
+                errorLabel.Visible = false;
+                var selectedIndex = listNoteBox.SelectedIndex;
+                var result = MessageBox.Show("Заметка будет безвозвратно удалена. Продолжить?", "Удаление заметки", MessageBoxButtons.YesNo);
+                if (result != DialogResult.Yes)
+                {
+                    return;
+                }
+                _project.Notes.RemoveAt(selectedIndex);
+                listNoteBox.Items.RemoveAt(selectedIndex);
+                ProjectManager.SaveToFile(_project, _filePath);
+                if (listNoteBox.Items.Count > 0)
+                {
+                    listNoteBox.SelectedIndex = 0;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Загрузка написанных заметок из файла при прогрузки главной формы
+        /// </summary>
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            _project = ProjectManager.LoadFromFile(_filePath);
+            foreach (var i in _project.Notes)
+                listNoteBox.Items.Add(i.Title);
+        }
+        
+        /// <summary>
+        ///При закрытии формы данные сохраняются в файл 
+        /// </summary>
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ProjectManager.SaveToFile(_project, _filePath);
+        }
+
+        /// <summary>
+        /// Функция, для отображения заметок на форме
+        /// когда пользователь выбрал заметку в листе
+        /// </summary>
+        private void listNoteBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listNoteBox.SelectedIndex >= 0)
+            {
+                var i = listNoteBox.SelectedIndex;
+                noteLabel.Text = _project.Notes[i].Title;
+                contentBox.Text = _project.Notes[i].Content;
+                dateTimeCreate.Value = _project.Notes[i].CreationTime;
+                dateTimeUpdate.Value = _project.Notes[i].UpdateTime;
+                categoryLabel.Text = _project.Notes[i].Category.ToString();
+            }
+
+        }
+
+        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            About form = new About();
+            form.Show();
+        }
+
+        //добавление/редактироование/удаление при нажатии кнопок или жлемента в меню
+        private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NoteEdit();
+        }
+
+        private void закрытьПриложениеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        
+        private void pictureCreateBox_Click(object sender, EventArgs e)
+        {
+            NoteAdd();
+        }
+
+        private void pictureEditBox_Click(object sender, EventArgs e)
+        {
+            NoteEdit();
+        }
+
+        private void pictureDeleteBox_Click(object sender, EventArgs e)
+        {
+            NoteDelete();
+        }
+        
+        //анимация кнопок
+        private void pictureCreateBox_MouseEnter(object sender, EventArgs e)
+        {
+            pictureCreateBox.Image = Properties.Resources.create_focus;
+        }
+
+        private void pictureCreateBox_MouseLeave(object sender, EventArgs e)
+        {
+            pictureCreateBox.Image = Properties.Resources.create_unfocus;
+        }
+
+        private void pictureEditBox_MouseEnter(object sender, EventArgs e)
+        {
+            pictureEditBox.Image = Properties.Resources.edit_focus;
+        }
+
+        private void pictureEditBox_MouseLeave(object sender, EventArgs e)
+        {
+            pictureEditBox.Image = Properties.Resources.edit_unfocus;
+        }
+
+        private void pictureDeleteBox_MouseEnter(object sender, EventArgs e)
+        {
+            pictureDeleteBox.Image = Properties.Resources.delete_focus;
+        }
+
+        private void pictureDeleteBox_MouseLeave(object sender, EventArgs e)
+        {
+            pictureDeleteBox.Image = Properties.Resources.delete_unfocus;
+        }
+
     }
 }

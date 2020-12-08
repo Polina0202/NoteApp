@@ -11,7 +11,7 @@ namespace NoteApp
     /// <summary>
     /// Класс «Менеджер проекта».
     /// </summary>
-   public class ProjectManager
+    public class ProjectManager
     {
         /// <summary>
         /// Имя файла для сериализации и десериализации данных.
@@ -36,8 +36,9 @@ namespace NoteApp
         /// </summary>
         public static void SaveToFile(Project project, string savefile)
         {
-            Directory.CreateDirectory(savefile);
             JsonSerializer serializer = new JsonSerializer();
+            if (!File.Exists(filepath))
+                File.Create(filepath).Close();
             using (StreamWriter sw = new StreamWriter(filepath))
             using (JsonWriter writer = new JsonTextWriter(sw))
             {
@@ -49,22 +50,28 @@ namespace NoteApp
         /// Десериализации данных.
         /// <param name="savefile">Путь до папки сохранения.</param>
         /// </summary>
-        public static Project LoadFromFile(string savefile)
+       public static Project LoadFromFile(string savefile)
         {
+            string fallpath = savefile + FileName;
             Project project;
+            if (!File.Exists(fallpath))
+            {
+                return new Project();
+            }
             JsonSerializer serializer = new JsonSerializer();
+
             try
             {
-                using (StreamReader sr = new StreamReader(savefile))
+                using (StreamReader sr = new StreamReader(fallpath))
                 using (JsonTextReader reader = new JsonTextReader(sr))
-
+                {
                     project = (Project)serializer.Deserialize<Project>(reader);
+                }
             }
             catch
             {
                 project = new Project();
             }
-
             return project;
         }
     }
