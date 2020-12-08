@@ -14,7 +14,7 @@ namespace NoteAppUI
     /// <summary>
     /// Класс взаимодействия MainForm.
     /// </summary>
-    public partial class Edit : Form
+    public partial class EditForm : Form
     {
         string startTitle = "";
         string startNote = "";
@@ -42,7 +42,7 @@ namespace NoteAppUI
             }
         }
         
-        public Edit()
+        public EditForm()
         {
             InitializeComponent();
             dateTimeCreate.CustomFormat = "HH:mm  dd.MMM.2kyy";

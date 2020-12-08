@@ -1,6 +1,6 @@
 ﻿namespace NoteAppUI
 {
-    partial class Edit
+    partial class EditForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Edit));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditForm));
             this.label1 = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
             this.dateTimeUpdate = new System.Windows.Forms.DateTimePicker();

@@ -18,9 +18,17 @@ namespace NoteAppUI
         /// </summary>
         private Project _project;
 
+        /// <summary>
+        /// Иницилизация объектов формы
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
+
+            _project = ProjectManager.LoadFromFile(_filePath);
+            foreach (var i in _project.Notes)
+                listNoteBox.Items.Add(i.Title);
+
             dateTimeCreate.CustomFormat = "HH:mm  dd.MMM.2kyy";
             dateTimeUpdate.CustomFormat = "HH:mm  dd.MMM.2kyy";
             this.Text = "Коллекция ваших заметок";
@@ -46,8 +54,8 @@ namespace NoteAppUI
         /// </summary>
         private void NoteAdd()
         {
-            var note = new Edit();
-            
+            var note = new EditForm();
+
             if (note.ShowDialog() != DialogResult.OK)
             {
                 return;
@@ -72,7 +80,7 @@ namespace NoteAppUI
                 var selectIndex = listNoteBox.SelectedIndex;
                 var selectNote = _project.Notes[selectIndex];
 
-                var updateNote = new Edit { Storage = selectNote };
+                var updateNote = new EditForm { Storage = selectNote };
                 var dialogResult = updateNote.ShowDialog();
                 if (dialogResult != DialogResult.OK)
                 {
@@ -116,14 +124,8 @@ namespace NoteAppUI
             }
         }
 
-        /// <summary>
-        /// Загрузка написанных заметок из файла при прогрузки главной формы
-        /// </summary>
         private void MainForm_Load(object sender, EventArgs e)
         {
-            _project = ProjectManager.LoadFromFile(_filePath);
-            foreach (var i in _project.Notes)
-                listNoteBox.Items.Add(i.Title);
         }
         
         /// <summary>
@@ -154,7 +156,7 @@ namespace NoteAppUI
 
         private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            About form = new About();
+            AboutForm form = new AboutForm();
             form.Show();
         }
 
