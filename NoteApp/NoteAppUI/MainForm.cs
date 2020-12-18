@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NoteApp;
+using System.Reflection;
 
 namespace NoteAppUI
 {
@@ -29,19 +30,30 @@ namespace NoteAppUI
             foreach (var i in _project.Notes)
                 listNoteBox.Items.Add(i.Title);
 
-            dateTimeCreate.CustomFormat = "HH:mm  dd.MMM.2kyy";
-            dateTimeUpdate.CustomFormat = "HH:mm  dd.MMM.2kyy";
-            this.Text = "Коллекция ваших заметок";
-
-            pictureCreateBox.Cursor = Cursors.Hand;
-            pictureEditBox.Cursor = Cursors.Hand;
-            pictureDeleteBox.Cursor = Cursors.Hand;
-
             foreach (int i in Enum.GetValues(typeof(NoteCategory)))
-                CategoryBox1.Items.Add(Enum.GetName(typeof(NoteCategory), i));
-            CategoryBox1.SelectedIndex = 0;
+                CategoryComboBox.Items.Add(GetDescription((NoteCategory)Enum.GetValues(typeof(NoteCategory)).GetValue(i)));
+            
+            CategoryComboBox.SelectedIndex = 0;
+        }
 
-            CategoryBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+        /// <summary>
+        /// Элементы enum в переводе на русский.
+        /// </summary>
+        /// <param name="enumElement">Элемент перечисления</param>
+        /// <returns>Название элемента</returns>
+        static string GetDescription(Enum enumElement)
+        {
+            Type type = enumElement.GetType();
+
+            MemberInfo[] memInfo = type.GetMember(enumElement.ToString());
+            if (memInfo != null && memInfo.Length > 0)
+            {
+                object[] attrs = memInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
+                if (attrs != null && attrs.Length > 0)
+                    return ((DescriptionAttribute)attrs[0]).Description;
+            }
+
+            return enumElement.ToString();
         }
 
         /// <summary>
@@ -52,35 +64,36 @@ namespace NoteAppUI
         /// <summary>
         /// Функция добавление новой заметки в коллекцию.
         /// </summary>
-        private void NoteAdd()
+        private void AddNote()
         {
-            var note = new EditForm();
+            var note = new NoteForm();
 
             if (note.ShowDialog() != DialogResult.OK)
             {
                 return;
             }
-            _project.Notes.Add(note.Storage);
-            listNoteBox.Items.Add(note.Storage.Title);
+            _project.Notes.Add(note._Note);
+            listNoteBox.Items.Add(note._Note.Title);
             ProjectManager.SaveToFile(_project, _filePath);
+
+            listNoteBox.SelectedIndex = listNoteBox.Items.Count - 1;
         }
         /// <summary>
         /// Функция для редактирование заметки
         /// </summary>
-        private void NoteEdit()
+        private void EditNote()
         {
             if (listNoteBox.SelectedIndex == -1)
             {
-                errorLabel.Text = "Не выбрана заметка для редактирования";
-                errorLabel.BackColor = Color.Tomato;
+                toolTip1.Show("Не выбрана заметка для редактирования", listNoteBox, 200, 10);
             }
             else
             {
-                errorLabel.Visible = false;
+                toolTip1.Hide(listNoteBox);
                 var selectIndex = listNoteBox.SelectedIndex;
                 var selectNote = _project.Notes[selectIndex];
 
-                var updateNote = new EditForm { Storage = selectNote };
+                var updateNote = new NoteForm { _Note = selectNote };
                 var dialogResult = updateNote.ShowDialog();
                 if (dialogResult != DialogResult.OK)
                 {
@@ -88,8 +101,8 @@ namespace NoteAppUI
                 }
                 _project.Notes.RemoveAt(selectIndex);
                 listNoteBox.Items.RemoveAt(selectIndex);
-                _project.Notes.Insert(selectIndex, updateNote.Storage);
-                listNoteBox.Items.Insert(selectIndex, updateNote.Storage.Title);
+                _project.Notes.Insert(selectIndex, updateNote._Note);
+                listNoteBox.Items.Insert(selectIndex, updateNote._Note.Title);
                 listNoteBox.SelectedIndex = selectIndex;
                 ProjectManager.SaveToFile(_project, _filePath);
             }
@@ -98,16 +111,15 @@ namespace NoteAppUI
         /// <summary>
         /// Функция для удаления заметки
         /// </summary>
-        private void NoteDelete()
+        private void DeleteNote()
         {
             if (listNoteBox.SelectedIndex == -1)
             {
-                errorLabel.Text = "Не выбрана заметка для удаления";
-                errorLabel.BackColor = Color.Tomato;
+                toolTip1.Show("Не выбрана заметка для удаления", listNoteBox, 200, 10);
             }
             else
             {
-                errorLabel.Visible = false;
+                toolTip1.Hide(listNoteBox);
                 var selectedIndex = listNoteBox.SelectedIndex;
                 var result = MessageBox.Show("Заметка будет безвозвратно удалена. Продолжить?", "Удаление заметки", MessageBoxButtons.YesNo);
                 if (result != DialogResult.Yes)
@@ -122,10 +134,6 @@ namespace NoteAppUI
                     listNoteBox.SelectedIndex = 0;
                 }
             }
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
         }
         
         /// <summary>
@@ -149,41 +157,40 @@ namespace NoteAppUI
                 contentBox.Text = _project.Notes[i].Content;
                 dateTimeCreate.Value = _project.Notes[i].CreationTime;
                 dateTimeUpdate.Value = _project.Notes[i].UpdateTime;
-                categoryLabel.Text = _project.Notes[i].Category.ToString();
+                categoryLabel.Text = GetDescription(_project.Notes[i].Category);
             }
-
         }
 
-        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        private void aboutProgramToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AboutForm form = new AboutForm();
             form.Show();
         }
 
         //добавление/редактироование/удаление при нажатии кнопок или жлемента в меню
-        private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
+        private void changeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            NoteEdit();
+            EditNote();
         }
 
-        private void закрытьПриложениеToolStripMenuItem_Click(object sender, EventArgs e)
+        private void closeAppToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
         }
         
         private void pictureCreateBox_Click(object sender, EventArgs e)
         {
-            NoteAdd();
+            AddNote();
         }
 
         private void pictureEditBox_Click(object sender, EventArgs e)
         {
-            NoteEdit();
+            EditNote();
         }
 
         private void pictureDeleteBox_Click(object sender, EventArgs e)
         {
-            NoteDelete();
+            DeleteNote();
         }
         
         //анимация кнопок
@@ -216,6 +223,5 @@ namespace NoteAppUI
         {
             pictureDeleteBox.Image = Properties.Resources.delete_unfocus;
         }
-
     }
 }

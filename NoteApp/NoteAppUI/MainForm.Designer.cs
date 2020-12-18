@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.закрытьПриложениеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.изменитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.помощьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.abourProgramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.errorLabel = new System.Windows.Forms.Label();
             this.listNoteBox = new System.Windows.Forms.ListBox();
-            this.CategoryBox1 = new System.Windows.Forms.ComboBox();
+            this.CategoryComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dateTimeUpdate = new System.Windows.Forms.DateTimePicker();
@@ -52,6 +52,7 @@
             this.pictureEditBox = new System.Windows.Forms.PictureBox();
             this.pictureDeleteBox = new System.Windows.Forms.PictureBox();
             this.pictureCreateBox = new System.Windows.Forms.PictureBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -64,73 +65,63 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.файлToolStripMenuItem,
-            this.изменитьToolStripMenuItem,
-            this.помощьToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.changeToolStripMenuItem,
+            this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1214, 28);
             this.menuStrip1.TabIndex = 13;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // файлToolStripMenuItem
+            // fileToolStripMenuItem
             // 
-            this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.закрытьПриложениеToolStripMenuItem});
-            this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(57, 24);
-            this.файлToolStripMenuItem.Text = "Файл";
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.closeAppToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(57, 24);
+            this.fileToolStripMenuItem.Text = "Файл";
             // 
-            // закрытьПриложениеToolStripMenuItem
+            // closeAppToolStripMenuItem
             // 
-            this.закрытьПриложениеToolStripMenuItem.Name = "закрытьПриложениеToolStripMenuItem";
-            this.закрытьПриложениеToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
-            this.закрытьПриложениеToolStripMenuItem.Text = "Закрыть приложение";
-            this.закрытьПриложениеToolStripMenuItem.Click += new System.EventHandler(this.закрытьПриложениеToolStripMenuItem_Click);
+            this.closeAppToolStripMenuItem.Name = "closeAppToolStripMenuItem";
+            this.closeAppToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
+            this.closeAppToolStripMenuItem.Text = "Закрыть приложение";
+            this.closeAppToolStripMenuItem.Click += new System.EventHandler(this.closeAppToolStripMenuItem_Click);
             // 
-            // изменитьToolStripMenuItem
+            // changeToolStripMenuItem
             // 
-            this.изменитьToolStripMenuItem.Name = "изменитьToolStripMenuItem";
-            this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(90, 24);
-            this.изменитьToolStripMenuItem.Text = "Изменить";
-            this.изменитьToolStripMenuItem.Click += new System.EventHandler(this.изменитьToolStripMenuItem_Click);
+            this.changeToolStripMenuItem.Name = "changeToolStripMenuItem";
+            this.changeToolStripMenuItem.Size = new System.Drawing.Size(90, 24);
+            this.changeToolStripMenuItem.Text = "Изменить";
+            this.changeToolStripMenuItem.Click += new System.EventHandler(this.changeToolStripMenuItem_Click);
             // 
-            // помощьToolStripMenuItem
+            // helpToolStripMenuItem
             // 
-            this.помощьToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.оПрограммеToolStripMenuItem});
-            this.помощьToolStripMenuItem.Name = "помощьToolStripMenuItem";
-            this.помощьToolStripMenuItem.Size = new System.Drawing.Size(81, 24);
-            this.помощьToolStripMenuItem.Text = "Помощь";
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.abourProgramToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(81, 24);
+            this.helpToolStripMenuItem.Text = "Помощь";
             // 
-            // оПрограммеToolStripMenuItem
+            // abourProgramToolStripMenuItem
             // 
-            this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
-            this.оПрограммеToolStripMenuItem.Text = "О программе";
-            this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem_Click);
+            this.abourProgramToolStripMenuItem.Name = "abourProgramToolStripMenuItem";
+            this.abourProgramToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
+            this.abourProgramToolStripMenuItem.Text = "О программе";
+            this.abourProgramToolStripMenuItem.Click += new System.EventHandler(this.aboutProgramToolStripMenuItem_Click);
             // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel1.Controls.Add(this.errorLabel);
             this.panel1.Controls.Add(this.listNoteBox);
-            this.panel1.Controls.Add(this.CategoryBox1);
+            this.panel1.Controls.Add(this.CategoryComboBox);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(12, 32);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(461, 561);
             this.panel1.TabIndex = 14;
-            // 
-            // errorLabel
-            // 
-            this.errorLabel.AutoSize = true;
-            this.errorLabel.BackColor = System.Drawing.SystemColors.Control;
-            this.errorLabel.Location = new System.Drawing.Point(6, 45);
-            this.errorLabel.Name = "errorLabel";
-            this.errorLabel.Size = new System.Drawing.Size(0, 17);
-            this.errorLabel.TabIndex = 3;
             // 
             // listNoteBox
             // 
@@ -145,13 +136,14 @@
             this.listNoteBox.TabIndex = 2;
             this.listNoteBox.SelectedIndexChanged += new System.EventHandler(this.listNoteBox_SelectedIndexChanged);
             // 
-            // CategoryBox1
+            // CategoryComboBox
             // 
-            this.CategoryBox1.FormattingEnabled = true;
-            this.CategoryBox1.Location = new System.Drawing.Point(218, 16);
-            this.CategoryBox1.Name = "CategoryBox1";
-            this.CategoryBox1.Size = new System.Drawing.Size(227, 24);
-            this.CategoryBox1.TabIndex = 1;
+            this.CategoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CategoryComboBox.FormattingEnabled = true;
+            this.CategoryComboBox.Location = new System.Drawing.Point(218, 16);
+            this.CategoryComboBox.Name = "CategoryComboBox";
+            this.CategoryComboBox.Size = new System.Drawing.Size(227, 24);
+            this.CategoryComboBox.TabIndex = 1;
             // 
             // label1
             // 
@@ -182,6 +174,7 @@
             // 
             // dateTimeUpdate
             // 
+            this.dateTimeUpdate.CustomFormat = "HH:mm  dd.MMM.2kyy";
             this.dateTimeUpdate.Enabled = false;
             this.dateTimeUpdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimeUpdate.Location = new System.Drawing.Point(541, 92);
@@ -205,14 +198,15 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(325, 92);
+            this.label4.Location = new System.Drawing.Point(333, 92);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(210, 17);
+            this.label4.Size = new System.Drawing.Size(202, 17);
             this.label4.TabIndex = 6;
-            this.label4.Text = "Время последнего изменения:";
+            this.label4.Text = "Дата последнего изменения:";
             // 
             // dateTimeCreate
             // 
+            this.dateTimeCreate.CustomFormat = "HH:mm  dd.MMM.2kyy";
             this.dateTimeCreate.Enabled = false;
             this.dateTimeCreate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimeCreate.Location = new System.Drawing.Point(138, 92);
@@ -226,9 +220,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(18, 92);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 17);
+            this.label2.Size = new System.Drawing.Size(112, 17);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Время создания:";
+            this.label2.Text = "Дата создания:";
             // 
             // categoryLabel
             // 
@@ -261,6 +255,7 @@
             // pictureEditBox
             // 
             this.pictureEditBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pictureEditBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureEditBox.Image = global::NoteAppUI.Properties.Resources.edit_unfocus;
             this.pictureEditBox.Location = new System.Drawing.Point(65, 603);
             this.pictureEditBox.Name = "pictureEditBox";
@@ -274,6 +269,7 @@
             // pictureDeleteBox
             // 
             this.pictureDeleteBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pictureDeleteBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureDeleteBox.Image = global::NoteAppUI.Properties.Resources.delete_unfocus;
             this.pictureDeleteBox.Location = new System.Drawing.Point(115, 603);
             this.pictureDeleteBox.Name = "pictureDeleteBox";
@@ -287,6 +283,7 @@
             // pictureCreateBox
             // 
             this.pictureCreateBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pictureCreateBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureCreateBox.Image = global::NoteAppUI.Properties.Resources.create_unfocus;
             this.pictureCreateBox.Location = new System.Drawing.Point(18, 603);
             this.pictureCreateBox.Name = "pictureCreateBox";
@@ -311,8 +308,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1232, 677);
             this.Name = "MainForm";
-            this.Text = "Edit";
-            this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Text = "Коллекция ваших заметок";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -330,14 +326,14 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem изменитьToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem помощьToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem changeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem abourProgramToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ListBox listNoteBox;
-        private System.Windows.Forms.ComboBox CategoryBox1;
+        private System.Windows.Forms.ComboBox CategoryComboBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox contentBox;
         private System.Windows.Forms.Label label4;
@@ -346,11 +342,11 @@
         private System.Windows.Forms.Label categoryLabel;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label noteLabel;
-        private System.Windows.Forms.ToolStripMenuItem закрытьПриложениеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem closeAppToolStripMenuItem;
         private System.Windows.Forms.DateTimePicker dateTimeUpdate;
-        private System.Windows.Forms.Label errorLabel;
         private System.Windows.Forms.PictureBox pictureCreateBox;
         private System.Windows.Forms.PictureBox pictureDeleteBox;
         private System.Windows.Forms.PictureBox pictureEditBox;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

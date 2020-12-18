@@ -22,12 +22,12 @@ namespace NoteApp
         /// <summary>
         /// Путь до папки сохранения.
         /// </summary>
-        public static string Savefile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/NoteApp/";
+        public static string Savefile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\NoteApp\\";
 
         /// <summary>
         /// Полный путь до файла.
         /// </summary>
-        private static string filepath = Path.Combine(Savefile, FileName);
+        private static string folderpath = Path.Combine(Savefile, FileName);
 
         /// <summary>
         /// Сериализации данных.
@@ -36,10 +36,13 @@ namespace NoteApp
         /// </summary>
         public static void SaveToFile(Project project, string savefile)
         {
-            JsonSerializer serializer = new JsonSerializer();
-            if (!File.Exists(filepath))
-                File.Create(filepath).Close();
-            using (StreamWriter sw = new StreamWriter(filepath))
+            if (!Directory.Exists(savefile))
+            {
+                Directory.CreateDirectory(savefile);
+            }
+
+            JsonSerializer serializer = new JsonSerializer();           
+            using (StreamWriter sw = new StreamWriter(savefile + FileName))
             using (JsonWriter writer = new JsonTextWriter(sw))
             {
                 serializer.Serialize(writer, project);
@@ -52,17 +55,17 @@ namespace NoteApp
         /// </summary>
        public static Project LoadFromFile(string savefile)
         {
-            string fallpath = savefile + FileName;
+            //string fallpath = savefile + FileName;
             Project project;
-            if (!File.Exists(fallpath))
+           /* if (!File.Exists(fallpath))
             {
                 return new Project();
-            }
+            }*/
             JsonSerializer serializer = new JsonSerializer();
 
             try
             {
-                using (StreamReader sr = new StreamReader(fallpath))
+                using (StreamReader sr = new StreamReader(folderpath))
                 using (JsonTextReader reader = new JsonTextReader(sr))
                 {
                     project = (Project)serializer.Deserialize<Project>(reader);

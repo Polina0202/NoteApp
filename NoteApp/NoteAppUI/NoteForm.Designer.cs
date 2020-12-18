@@ -1,6 +1,6 @@
 ﻿namespace NoteAppUI
 {
-    partial class EditForm
+    partial class NoteForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditForm));
-            this.label1 = new System.Windows.Forms.Label();
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NoteForm));
+            this.labelNoteTitle = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
             this.dateTimeUpdate = new System.Windows.Forms.DateTimePicker();
             this.noteBox = new System.Windows.Forms.TextBox();
@@ -37,22 +38,24 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.CategoryBox = new System.Windows.Forms.ComboBox();
+            this.CategoryComboBox = new System.Windows.Forms.ComboBox();
             this.dateTimeCreate = new System.Windows.Forms.DateTimePicker();
             this.backButton = new System.Windows.Forms.Button();
             this.titleBox = new System.Windows.Forms.TextBox();
-            this.labelTitleError = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
-            // label1
+            // labelNoteTitle
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(240, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(156, 32);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "ЗАМЕТКА";
+            this.labelNoteTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelNoteTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNoteTitle.Location = new System.Drawing.Point(15, 20);
+            this.labelNoteTitle.Name = "labelNoteTitle";
+            this.labelNoteTitle.Size = new System.Drawing.Size(623, 32);
+            this.labelNoteTitle.TabIndex = 0;
+            this.labelNoteTitle.Text = "ЗАМЕТКА";
+            this.labelNoteTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // saveButton
             // 
@@ -67,6 +70,7 @@
             // 
             // dateTimeUpdate
             // 
+            this.dateTimeUpdate.CustomFormat = "HH:mm  dd.MMM.2kyy";
             this.dateTimeUpdate.Enabled = false;
             this.dateTimeUpdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimeUpdate.Location = new System.Drawing.Point(453, 130);
@@ -123,16 +127,19 @@
             this.label3.TabIndex = 34;
             this.label3.Text = "Категория:";
             // 
-            // CategoryBox
+            // CategoryComboBox
             // 
-            this.CategoryBox.FormattingEnabled = true;
-            this.CategoryBox.Location = new System.Drawing.Point(130, 100);
-            this.CategoryBox.Name = "CategoryBox";
-            this.CategoryBox.Size = new System.Drawing.Size(140, 24);
-            this.CategoryBox.TabIndex = 36;
+            this.CategoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CategoryComboBox.FormattingEnabled = true;
+            this.CategoryComboBox.Location = new System.Drawing.Point(130, 100);
+            this.CategoryComboBox.Name = "CategoryComboBox";
+            this.CategoryComboBox.Size = new System.Drawing.Size(140, 24);
+            this.CategoryComboBox.TabIndex = 36;
+            this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryBox_SelectedIndexChanged);
             // 
             // dateTimeCreate
             // 
+            this.dateTimeCreate.CustomFormat = "HH:mm  dd.MMM.2kyy";
             this.dateTimeCreate.Enabled = false;
             this.dateTimeCreate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimeCreate.Location = new System.Drawing.Point(130, 130);
@@ -156,25 +163,21 @@
             this.titleBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.titleBox.Location = new System.Drawing.Point(130, 72);
+            this.titleBox.MaxLength = 50;
             this.titleBox.Name = "titleBox";
             this.titleBox.Size = new System.Drawing.Size(508, 22);
             this.titleBox.TabIndex = 45;
             this.titleBox.TextChanged += new System.EventHandler(this.titleBox_TextChanged);
             // 
-            // labelTitleError
+            // toolTip1
             // 
-            this.labelTitleError.AutoSize = true;
-            this.labelTitleError.Location = new System.Drawing.Point(131, 52);
-            this.labelTitleError.Name = "labelTitleError";
-            this.labelTitleError.Size = new System.Drawing.Size(0, 17);
-            this.labelTitleError.TabIndex = 46;
+            this.toolTip1.BackColor = System.Drawing.Color.Tomato;
             // 
-            // Edit
+            // NoteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(652, 653);
-            this.Controls.Add(this.labelTitleError);
             this.Controls.Add(this.titleBox);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.saveButton);
@@ -184,14 +187,14 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.CategoryBox);
+            this.Controls.Add(this.CategoryComboBox);
             this.Controls.Add(this.dateTimeCreate);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelNoteTitle);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(670, 700);
-            this.Name = "Edit";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Name = "NoteForm";
+            this.Text = "Создать или изменить заметку";
+            this.Load += new System.EventHandler(this.NoteForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -199,7 +202,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelNoteTitle;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.DateTimePicker dateTimeUpdate;
         private System.Windows.Forms.TextBox noteBox;
@@ -207,10 +210,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox CategoryBox;
+        private System.Windows.Forms.ComboBox CategoryComboBox;
         private System.Windows.Forms.DateTimePicker dateTimeCreate;
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.TextBox titleBox;
-        private System.Windows.Forms.Label labelTitleError;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
