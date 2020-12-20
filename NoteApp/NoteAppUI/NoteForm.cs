@@ -39,7 +39,7 @@ namespace NoteAppUI
                 _note = (Note)value.Clone();
                 
                 titleBox.Text = value.Title;
-                dateTimeCreate.Value = value.CreationTime;
+                dateTimeCreate.Value = value.CreatedTime;
                 dateTimeUpdate.Value = value.UpdateTime;
                 noteBox.Text = value.Content;
                 CategoryComboBox.Text = value.Category.ToString();
@@ -176,7 +176,7 @@ namespace NoteAppUI
             try
             {
                 _Note.Title = titleBox.Text;
-                _Note.CreationTime = dateTimeCreate.Value;
+                _Note.CreatedTime = dateTimeCreate.Value;
                 _Note.UpdateTime = DateTime.Now;
 ;
                 _Note.Content = noteBox.Text;

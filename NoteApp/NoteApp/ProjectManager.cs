@@ -22,27 +22,27 @@ namespace NoteApp
         /// <summary>
         /// Путь до папки сохранения.
         /// </summary>
-        public static string Savefile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\NoteApp\\";
+        public static string SaveFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\NoteApp\\";
 
         /// <summary>
         /// Полный путь до файла.
         /// </summary>
-        private static string folderpath = Path.Combine(Savefile, FileName);
-
+        public static string FolderPath = Path.Combine(SaveFile, FileName);
+        
         /// <summary>
         /// Сериализации данных.
         /// <param name="project">Проект.</param>
         /// <param name="savefile">Путь до папки сохранения.</param>
         /// </summary>
-        public static void SaveToFile(Project project, string savefile)
+        public static void SaveToFile(Project project, string savefile, string folderpath)
         {
-            if (!Directory.Exists(savefile))
+            if (!File.Exists(savefile))
             {
                 Directory.CreateDirectory(savefile);
             }
 
             JsonSerializer serializer = new JsonSerializer();           
-            using (StreamWriter sw = new StreamWriter(savefile + FileName))
+            using (StreamWriter sw = new StreamWriter(folderpath))
             using (JsonWriter writer = new JsonTextWriter(sw))
             {
                 serializer.Serialize(writer, project);
@@ -53,14 +53,9 @@ namespace NoteApp
         /// Десериализации данных.
         /// <param name="savefile">Путь до папки сохранения.</param>
         /// </summary>
-       public static Project LoadFromFile(string savefile)
+       public static Project LoadFromFile(string folderpath)
         {
-            //string fallpath = savefile + FileName;
             Project project;
-           /* if (!File.Exists(fallpath))
-            {
-                return new Project();
-            }*/
             JsonSerializer serializer = new JsonSerializer();
 
             try

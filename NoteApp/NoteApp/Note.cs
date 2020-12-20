@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NoteApp
 {
@@ -39,7 +35,7 @@ namespace NoteApp
 
         /// <summary>
         /// Свойство заголовка.
-        ///Количество символов не должно превышать 50ти символов.
+        ///Количество символов не должно превышать 50 символов.
         ///Устанавливает название по умолчанию, если такого не было найдено.
         /// </summary>
         public string Title
@@ -52,7 +48,7 @@ namespace NoteApp
             {
                 if (value.Length > 50)
                 {
-                    throw new ArgumentException("Назване заметки не может превышать 50 символов. Измените название!");
+                    throw new ArgumentException("Название заметки не может превышать 50 символов. Измените название!");
                 }
                 else
                 {
@@ -66,9 +62,24 @@ namespace NoteApp
         }
 
         /// <summary>
-        /// Свойство для записи времени последнего изменения.
-        /// </summary
-        public DateTime Creation
+        /// Свойство времени создания заметки.
+        /// </summary>
+        public DateTime CreatedTime
+        {
+            get
+            {
+                return _сreationTime;
+            }
+            set
+            {
+                _сreationTime = value;
+            }
+        }
+
+        /// <summary>
+        /// Свойство изменения времени заметки.
+        /// </summary>
+        public DateTime UpdateTime
         {
             get
             {
@@ -79,10 +90,12 @@ namespace NoteApp
                 _changeTime = value;
             }
         }
+
         /// <summary>
         /// Свойство категории заметки.
         /// Изменяет время последнего изменение при смене категории.
         /// </summary>
+
         public NoteCategory Category
         {
             get
@@ -112,24 +125,9 @@ namespace NoteApp
         }
 
         /// <summary>
-        /// Свойство времени создания заметки.
-        /// </summary>
-        public DateTime CreationTime
-        {
-            get
-            {
-                return _сreationTime;
-            }
-            set
-            {
-                _сreationTime = value;
-            }
-        }
-
-        /// <summary>
-        /// Свойство изменения времени заметки.
-        /// </summary>
-        public DateTime UpdateTime
+        /// Свойство для записи времени последнего изменения.
+        /// </summary
+        public DateTime Creation
         {
             get
             {
@@ -152,7 +150,8 @@ namespace NoteApp
                 Title = this.Title,
                 Content = this.Content,
                 UpdateTime = this.UpdateTime,
-                Category = this.Category
+                Category = this.Category,
+                CreatedTime = this.CreatedTime
             };
         }
     }

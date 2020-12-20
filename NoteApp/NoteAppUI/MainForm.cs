@@ -26,7 +26,7 @@ namespace NoteAppUI
         {
             InitializeComponent();
 
-            _project = ProjectManager.LoadFromFile(_filePath);
+            _project = ProjectManager.LoadFromFile(_folderPath);
             foreach (var i in _project.Notes)
                 listNoteBox.Items.Add(i.Title);
 
@@ -59,8 +59,8 @@ namespace NoteAppUI
         /// <summary>
         /// Путь к папке с файлом заметок.
         /// </summary>
-        private readonly string _filePath = ProjectManager.Savefile;
-
+        private readonly string _filePath = ProjectManager.SaveFile;
+        private readonly string _folderPath = ProjectManager.FolderPath;
         /// <summary>
         /// Функция добавление новой заметки в коллекцию.
         /// </summary>
@@ -74,7 +74,7 @@ namespace NoteAppUI
             }
             _project.Notes.Add(note._Note);
             listNoteBox.Items.Add(note._Note.Title);
-            ProjectManager.SaveToFile(_project, _filePath);
+            ProjectManager.SaveToFile(_project, _filePath, _folderPath);
 
             listNoteBox.SelectedIndex = listNoteBox.Items.Count - 1;
         }
@@ -104,7 +104,7 @@ namespace NoteAppUI
                 _project.Notes.Insert(selectIndex, updateNote._Note);
                 listNoteBox.Items.Insert(selectIndex, updateNote._Note.Title);
                 listNoteBox.SelectedIndex = selectIndex;
-                ProjectManager.SaveToFile(_project, _filePath);
+                ProjectManager.SaveToFile(_project, _filePath, _folderPath);
             }
         }
 
@@ -128,7 +128,7 @@ namespace NoteAppUI
                 }
                 _project.Notes.RemoveAt(selectedIndex);
                 listNoteBox.Items.RemoveAt(selectedIndex);
-                ProjectManager.SaveToFile(_project, _filePath);
+                ProjectManager.SaveToFile(_project, _filePath, _folderPath);
                 if (listNoteBox.Items.Count > 0)
                 {
                     listNoteBox.SelectedIndex = 0;
@@ -141,7 +141,7 @@ namespace NoteAppUI
         /// </summary>
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            ProjectManager.SaveToFile(_project, _filePath);
+            ProjectManager.SaveToFile(_project, _filePath, _folderPath);
         }
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace NoteAppUI
                 var i = listNoteBox.SelectedIndex;
                 noteLabel.Text = _project.Notes[i].Title;
                 contentBox.Text = _project.Notes[i].Content;
-                dateTimeCreate.Value = _project.Notes[i].CreationTime;
+                dateTimeCreate.Value = _project.Notes[i].CreatedTime;
                 dateTimeUpdate.Value = _project.Notes[i].UpdateTime;
                 categoryLabel.Text = GetDescription(_project.Notes[i].Category);
             }
