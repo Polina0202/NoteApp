@@ -38,11 +38,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.CategoryComboBox = new System.Windows.Forms.ComboBox();
             this.dateTimeCreate = new System.Windows.Forms.DateTimePicker();
             this.backButton = new System.Windows.Forms.Button();
             this.titleBox = new System.Windows.Forms.TextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.CategoryComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // labelNoteTitle
@@ -127,16 +127,6 @@
             this.label3.TabIndex = 34;
             this.label3.Text = "Категория:";
             // 
-            // CategoryComboBox
-            // 
-            this.CategoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CategoryComboBox.FormattingEnabled = true;
-            this.CategoryComboBox.Location = new System.Drawing.Point(130, 100);
-            this.CategoryComboBox.Name = "CategoryComboBox";
-            this.CategoryComboBox.Size = new System.Drawing.Size(140, 24);
-            this.CategoryComboBox.TabIndex = 36;
-            this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryBox_SelectedIndexChanged);
-            // 
             // dateTimeCreate
             // 
             this.dateTimeCreate.CustomFormat = "HH:mm  dd.MMM.2kyy";
@@ -173,11 +163,22 @@
             // 
             this.toolTip1.BackColor = System.Drawing.Color.Tomato;
             // 
+            // CategoryComboBox
+            // 
+            this.CategoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CategoryComboBox.FormattingEnabled = true;
+            this.CategoryComboBox.Location = new System.Drawing.Point(130, 97);
+            this.CategoryComboBox.Name = "CategoryComboBox";
+            this.CategoryComboBox.Size = new System.Drawing.Size(185, 24);
+            this.CategoryComboBox.TabIndex = 46;
+            this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
+            // 
             // NoteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(652, 653);
+            this.Controls.Add(this.CategoryComboBox);
             this.Controls.Add(this.titleBox);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.saveButton);
@@ -187,7 +188,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.CategoryComboBox);
             this.Controls.Add(this.dateTimeCreate);
             this.Controls.Add(this.labelNoteTitle);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -210,10 +210,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox CategoryComboBox;
         private System.Windows.Forms.DateTimePicker dateTimeCreate;
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.TextBox titleBox;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ComboBox CategoryComboBox;
     }
 }

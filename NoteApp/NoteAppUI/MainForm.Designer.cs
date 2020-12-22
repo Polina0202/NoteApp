@@ -191,6 +191,7 @@
             this.contentBox.Location = new System.Drawing.Point(21, 120);
             this.contentBox.Multiline = true;
             this.contentBox.Name = "contentBox";
+            this.contentBox.ReadOnly = true;
             this.contentBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.contentBox.Size = new System.Drawing.Size(705, 475);
             this.contentBox.TabIndex = 0;

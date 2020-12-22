@@ -17,6 +17,7 @@ namespace NoteAppUI
     /// </summary>
     public partial class NoteForm : Form
     {
+        //Для *
         string startTitle = "";
         string startNote = "";
         string startCategory = "Работа";
@@ -42,7 +43,8 @@ namespace NoteAppUI
                 dateTimeCreate.Value = value.CreatedTime;
                 dateTimeUpdate.Value = value.UpdateTime;
                 noteBox.Text = value.Content;
-                CategoryComboBox.Text = value.Category.ToString();
+                CategoryComboBox.Text = GetDescription((value.Category));
+                
                 startTitle = titleBox.Text;
                 startNote = noteBox.Text;
                 startCategory = CategoryComboBox.Text;
@@ -131,7 +133,7 @@ namespace NoteAppUI
         }
 
 
-        private void CategoryBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (startCategory != CategoryComboBox.Text)
             {
