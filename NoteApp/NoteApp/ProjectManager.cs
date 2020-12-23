@@ -36,7 +36,7 @@ namespace NoteApp
         /// </summary>
         public static void SaveToFile(Project project, string savefile, string folderpath)
         {
-            if (!File.Exists(savefile))
+            if (!Directory.Exists(savefile))
             {
                 Directory.CreateDirectory(savefile);
             }

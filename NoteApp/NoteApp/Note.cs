@@ -125,21 +125,6 @@ namespace NoteApp
         }
 
         /// <summary>
-        /// Свойство для записи времени последнего изменения.
-        /// </summary
-        public DateTime Creation
-        {
-            get
-            {
-                return _changeTime;
-            }
-            set
-            {
-                _changeTime = value;
-            }
-        }
-
-        /// <summary>
         /// Метод клонирования.
         /// </summary>
         /// <returns>Возвращает копию класса Note</returns>

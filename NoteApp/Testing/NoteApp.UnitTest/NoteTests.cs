@@ -11,7 +11,7 @@ namespace NoteApp.UnitTest
     public class NoteTests
     {
         [Test]
-        public void Name_NullValue_ReturnAdjustedValue()
+        public void Title_NullTitle_ReturnDefaultTitle()
         {
             //Setup
             var note = new Note();
@@ -27,7 +27,7 @@ namespace NoteApp.UnitTest
         }
 
         [Test]
-        public void Name_GoodValue_ReturnsSameValue()
+        public void Title_GoodTitle_ReturnsSameTitle()
         {
             //Setup
             var note = new Note();
@@ -43,7 +43,7 @@ namespace NoteApp.UnitTest
         }
 
         [Test]
-        public void Name_BadValue_ThrowsException()
+        public void Title_LongTitle_ThrowsException()
         {
             //Setup
             var note = new Note();
@@ -126,22 +126,6 @@ namespace NoteApp.UnitTest
         }
 
         [Test]
-        public void Creation_CorrectValue_ReturnCorrectValues()
-        {
-            //Setup
-            var note = new Note();
-            var sourceValue = new DateTime(2020, 02, 02);
-            var expectedValue = sourceValue;
-
-            //Act
-            note.Creation = sourceValue;
-            var actualValue = note.Creation;
-
-            //Assert
-            NUnit.Framework.Assert.AreEqual(expectedValue, actualValue);
-        }
-
-        [Test]
         public void Clone_CorrectNote_ReturnCorrectNote()
         {
             //Setup
@@ -156,11 +140,18 @@ namespace NoteApp.UnitTest
 
             //Act
             var actualNote = expectedNote.Clone() as Note;
-            var expectedResult = JsonConvert.SerializeObject(expectedNote);
-            var actualResult = JsonConvert.SerializeObject(actualNote);
-
+            
             //Assert
-            NUnit.Framework.Assert.AreEqual(expectedResult, actualResult);
+            Assert(expectedNote, actualNote);
+        }
+
+        public static void Assert(Note note1, Note note2)
+        {
+            NUnit.Framework.Assert.AreEqual(note1.Title, note2.Title);
+            NUnit.Framework.Assert.AreEqual(note1.Content, note2.Content);
+            NUnit.Framework.Assert.AreEqual(note1.Category, note2.Category);
+            NUnit.Framework.Assert.AreEqual(note1.CreatedTime, note2.CreatedTime);
+            NUnit.Framework.Assert.AreEqual(note1.UpdateTime, note2.UpdateTime);
         }
     }
 }
