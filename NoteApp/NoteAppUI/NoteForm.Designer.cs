@@ -224,11 +224,12 @@
             // 
             // emojiButton
             // 
+            this.emojiButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.emojiButton.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.emojiButton.Image = global::NoteAppUI.Properties.Resources.emoji_unfocus;
             this.emojiButton.Location = new System.Drawing.Point(564, 473);
             this.emojiButton.Name = "emojiButton";
-            this.emojiButton.Size = new System.Drawing.Size(38, 37);
+            this.emojiButton.Size = new System.Drawing.Size(39, 38);
             this.emojiButton.TabIndex = 51;
             this.emojiButton.TabStop = false;
             this.emojiButton.Click += new System.EventHandler(this.emojiButton_Click);
