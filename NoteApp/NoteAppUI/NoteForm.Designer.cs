@@ -256,6 +256,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.labelNoteTitle);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(660, 612);
             this.Name = "NoteForm";
             this.Text = "Создать или изменить заметку";
             this.Load += new System.EventHandler(this.NoteForm_Load);
