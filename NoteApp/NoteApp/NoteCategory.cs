@@ -13,6 +13,8 @@ namespace NoteApp
     /// </summary>
     public enum NoteCategory
     {
+        [Description("Все заметки")]
+        All,
         [Description("Работа")]
         Job,
         [Description("Дом")]

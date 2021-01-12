@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 
+
 namespace NoteApp
 {
     /// <summary>
@@ -13,9 +14,23 @@ namespace NoteApp
     /// </summary>
     public class Project
     {
+
+        /// <summary>
+        /// Индекс текущей заметки.
+        /// </summary>
+        public int SelectedIndex { get; set; }
+
         /// <summary>
         /// Словарь заметок.
         /// </summary>
-        public ObservableCollection<Note> Notes { get; set; } = new ObservableCollection<Note>();
+        public List<Note> Notes { get; set; } = new List<Note>();
+
+        /// <summary>
+        /// Сортировка списка заметок по дате изменения.
+        /// </summary>
+        public List<Note> SortNotes(List<Note> note)
+        {
+            return note.OrderByDescending(item => item.UpdateTime).ToList();
+        }
     }
 }

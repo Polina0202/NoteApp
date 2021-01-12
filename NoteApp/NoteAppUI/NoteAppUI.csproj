@@ -69,6 +69,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoundPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -109,9 +112,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\create_focus.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\create_unfocus.png" />
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +125,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\edit_unfocus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\create_focus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emoji_unfocus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emoji_focus.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

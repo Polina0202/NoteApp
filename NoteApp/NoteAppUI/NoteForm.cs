@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NoteApp;
 using System.Reflection;
+using System.Windows;
 
 namespace NoteAppUI
 {
@@ -51,16 +52,21 @@ namespace NoteAppUI
             }
         }
         
+        //Иницилизация формы.
         public NoteForm()
         {
             InitializeComponent();
 
             foreach (int i in Enum.GetValues(typeof(NoteCategory)))
-                CategoryComboBox.Items.Add(GetDescription((NoteCategory)Enum.GetValues(typeof(NoteCategory)).GetValue(i)));
+            {
+                if (i > 0 )
+                    CategoryComboBox.Items.Add(GetDescription((NoteCategory)Enum.GetValues(typeof(NoteCategory)).GetValue(i)));
+            }
 
             CategoryComboBox.SelectedIndex = 0;
         }
 
+        //Установка значений призагрузке формы.
         private void NoteForm_Load(object sender, EventArgs e)
         {
             this.Text = "Создать или изменить заметку";
@@ -69,7 +75,7 @@ namespace NoteAppUI
             _isChangeCategory = false;
         }
 
-
+        //
         private void backButton_Click(object sender, EventArgs e)
         {
             if (_isChangeTitle||_isChangeText || _isChangeCategory)
@@ -106,7 +112,7 @@ namespace NoteAppUI
                 titleBox.BackColor = Color.White;
                 labelNoteTitle.Text = titleBox.Text;
 
-                toolTip1.Hide(titleBox);
+                toolTip.Hide(titleBox);
 
                 if (titleBox.Text.Length == 0)
                     labelNoteTitle.Text = "ЗАМЕТКА";
@@ -114,7 +120,7 @@ namespace NoteAppUI
             else
             {
                 titleBox.BackColor = Color.Tomato;
-                toolTip1.Show("Превышено допустимое количество символов", titleBox, 305, 10);
+                toolTip.Show("Превышено допустимое количество символов", titleBox, 305, 10);
             }
         }
 
@@ -185,7 +191,7 @@ namespace NoteAppUI
                 
                 NoteCategory selectedNoteCategory;
                 selectedNoteCategory = (NoteCategory)CategoryComboBox.SelectedIndex;
-                _Note.Category = selectedNoteCategory;
+                _Note.Category = selectedNoteCategory+1;
 
                 DialogResult = DialogResult.OK;
             }
@@ -194,8 +200,7 @@ namespace NoteAppUI
                 MessageBox.Show(e.Message, @"Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
+        
         /// <summary>
         /// Элементы enum в переводе на русский.
         /// </summary>
@@ -214,6 +219,60 @@ namespace NoteAppUI
             }
 
             return enumElement.ToString();
+        }
+
+        //Открытия листа с emoji.
+        private void emojiButton_Click(object sender, EventArgs e)
+        {
+            if (emojiListView.Visible == true)
+                emojiListView.Visible = false;
+            else
+                emojiListView.Visible = true;
+        }
+
+        //Действия при выборе emoji.
+        private void emojiListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < emojiListView.Items.Count; i++)
+            {
+                if (emojiListView.Items[i].Selected == true)
+                    printEmoji(i);
+            }
+        }
+
+        /// <summary>
+        /// Функция для добавления emoji в текст TextBox относительно текущего расположения каретки.
+        /// </summary>
+        private void printEmoji(int selectedChar)
+        {
+            string stringBeforeCaret = "";
+            string stringAfterCaret = "";
+            int caretIndex = noteBox.SelectionStart;
+
+            if ((emojiListView.Items[selectedChar].Selected == true))
+            {
+                stringBeforeCaret = noteBox.Text.Substring(0, noteBox.SelectionStart);
+                if ((noteBox.Text.Length > 0) && (noteBox.SelectionStart != noteBox.Text.Length))
+                {
+                    stringAfterCaret = noteBox.Text.Substring(noteBox.SelectionStart, noteBox.Text.Length - noteBox.SelectionStart);
+                }
+                stringBeforeCaret += emojiListView.Items[selectedChar].Text;
+                stringBeforeCaret += stringAfterCaret;
+                noteBox.Text = stringBeforeCaret;
+                noteBox.SelectionStart = caretIndex + 1;
+                noteBox.Focus();
+            }
+        }
+
+        //анимация кнопки
+        private void emojiButton_MouseEnter(object sender, EventArgs e)
+        {
+            emojiButton.Image = Properties.Resources.emoji_focus;
+        }
+
+        private void emojiButton_MouseLeave(object sender, EventArgs e)
+        {
+            emojiButton.Image = Properties.Resources.emoji_unfocus;
         }
     }
 }

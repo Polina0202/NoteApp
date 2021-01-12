@@ -29,6 +29,25 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            "❤"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            "☺"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            "☹"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            "☛"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
+            "✐"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
+            "☏"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
+            "●"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem(new string[] {
+            "⚘"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem(new string[] {
+            "♫"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NoteForm));
             this.labelNoteTitle = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
@@ -38,11 +57,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.dateTimeCreate = new System.Windows.Forms.DateTimePicker();
             this.backButton = new System.Windows.Forms.Button();
             this.titleBox = new System.Windows.Forms.TextBox();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.CategoryComboBox = new System.Windows.Forms.ComboBox();
+            this.dateTimeCreate = new System.Windows.Forms.DateTimePicker();
+            this.emojiListView = new System.Windows.Forms.ListView();
+            this.emojiButton = new NoteAppUI.RoundPictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.emojiButton)).BeginInit();
             this.SuspendLayout();
             // 
             // labelNoteTitle
@@ -50,9 +72,9 @@
             this.labelNoteTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelNoteTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNoteTitle.Location = new System.Drawing.Point(15, 20);
+            this.labelNoteTitle.Location = new System.Drawing.Point(12, 9);
             this.labelNoteTitle.Name = "labelNoteTitle";
-            this.labelNoteTitle.Size = new System.Drawing.Size(623, 32);
+            this.labelNoteTitle.Size = new System.Drawing.Size(615, 32);
             this.labelNoteTitle.TabIndex = 0;
             this.labelNoteTitle.Text = "ЗАМЕТКА";
             this.labelNoteTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -60,7 +82,7 @@
             // saveButton
             // 
             this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveButton.Location = new System.Drawing.Point(364, 610);
+            this.saveButton.Location = new System.Drawing.Point(357, 522);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(134, 31);
             this.saveButton.TabIndex = 42;
@@ -73,7 +95,7 @@
             this.dateTimeUpdate.CustomFormat = "HH:mm  dd.MMM.2kyy";
             this.dateTimeUpdate.Enabled = false;
             this.dateTimeUpdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimeUpdate.Location = new System.Drawing.Point(453, 130);
+            this.dateTimeUpdate.Location = new System.Drawing.Point(442, 110);
             this.dateTimeUpdate.Name = "dateTimeUpdate";
             this.dateTimeUpdate.Size = new System.Drawing.Size(185, 22);
             this.dateTimeUpdate.TabIndex = 41;
@@ -83,18 +105,18 @@
             this.noteBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.noteBox.Location = new System.Drawing.Point(12, 158);
+            this.noteBox.Location = new System.Drawing.Point(12, 141);
             this.noteBox.Multiline = true;
             this.noteBox.Name = "noteBox";
             this.noteBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.noteBox.Size = new System.Drawing.Size(626, 446);
+            this.noteBox.Size = new System.Drawing.Size(615, 372);
             this.noteBox.TabIndex = 38;
             this.noteBox.TextChanged += new System.EventHandler(this.noteBox_TextChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(325, 130);
+            this.label5.Location = new System.Drawing.Point(317, 113);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(122, 17);
             this.label5.TabIndex = 40;
@@ -103,7 +125,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 70);
+            this.label2.Location = new System.Drawing.Point(9, 48);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(80, 17);
             this.label2.TabIndex = 33;
@@ -112,7 +134,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 130);
+            this.label4.Location = new System.Drawing.Point(9, 113);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(112, 17);
             this.label4.TabIndex = 39;
@@ -121,26 +143,16 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 100);
+            this.label3.Location = new System.Drawing.Point(9, 81);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(81, 17);
             this.label3.TabIndex = 34;
             this.label3.Text = "Категория:";
             // 
-            // dateTimeCreate
-            // 
-            this.dateTimeCreate.CustomFormat = "HH:mm  dd.MMM.2kyy";
-            this.dateTimeCreate.Enabled = false;
-            this.dateTimeCreate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimeCreate.Location = new System.Drawing.Point(130, 130);
-            this.dateTimeCreate.Name = "dateTimeCreate";
-            this.dateTimeCreate.Size = new System.Drawing.Size(185, 22);
-            this.dateTimeCreate.TabIndex = 37;
-            // 
             // backButton
             // 
             this.backButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.backButton.Location = new System.Drawing.Point(506, 610);
+            this.backButton.Location = new System.Drawing.Point(497, 522);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(134, 31);
             this.backButton.TabIndex = 44;
@@ -152,32 +164,85 @@
             // 
             this.titleBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.titleBox.Location = new System.Drawing.Point(130, 72);
+            this.titleBox.Location = new System.Drawing.Point(123, 45);
             this.titleBox.MaxLength = 50;
             this.titleBox.Name = "titleBox";
-            this.titleBox.Size = new System.Drawing.Size(508, 22);
+            this.titleBox.Size = new System.Drawing.Size(504, 22);
             this.titleBox.TabIndex = 45;
             this.titleBox.TextChanged += new System.EventHandler(this.titleBox_TextChanged);
             // 
-            // toolTip1
+            // toolTip
             // 
-            this.toolTip1.BackColor = System.Drawing.Color.Tomato;
+            this.toolTip.BackColor = System.Drawing.Color.Tomato;
             // 
             // CategoryComboBox
             // 
             this.CategoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CategoryComboBox.FormattingEnabled = true;
-            this.CategoryComboBox.Location = new System.Drawing.Point(130, 97);
+            this.CategoryComboBox.Location = new System.Drawing.Point(123, 77);
             this.CategoryComboBox.Name = "CategoryComboBox";
             this.CategoryComboBox.Size = new System.Drawing.Size(185, 24);
             this.CategoryComboBox.TabIndex = 46;
             this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
             // 
+            // dateTimeCreate
+            // 
+            this.dateTimeCreate.CustomFormat = "HH:mm  dd.MMM.2kyy";
+            this.dateTimeCreate.Enabled = false;
+            this.dateTimeCreate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimeCreate.Location = new System.Drawing.Point(123, 110);
+            this.dateTimeCreate.Name = "dateTimeCreate";
+            this.dateTimeCreate.Size = new System.Drawing.Size(185, 22);
+            this.dateTimeCreate.TabIndex = 47;
+            // 
+            // emojiListView
+            // 
+            this.emojiListView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.emojiListView.Cursor = System.Windows.Forms.Cursors.Hand;
+            listViewGroup1.Header = "ListViewGroup";
+            listViewGroup1.Name = "listViewGroup1";
+            this.emojiListView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup1});
+            this.emojiListView.HideSelection = false;
+            this.emojiListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1,
+            listViewItem2,
+            listViewItem3,
+            listViewItem4,
+            listViewItem5,
+            listViewItem6,
+            listViewItem7,
+            listViewItem8,
+            listViewItem9});
+            this.emojiListView.Location = new System.Drawing.Point(412, 298);
+            this.emojiListView.Name = "emojiListView";
+            this.emojiListView.Size = new System.Drawing.Size(192, 173);
+            this.emojiListView.TabIndex = 48;
+            this.emojiListView.UseCompatibleStateImageBehavior = false;
+            this.emojiListView.Visible = false;
+            this.emojiListView.SelectedIndexChanged += new System.EventHandler(this.emojiListView_SelectedIndexChanged);
+            // 
+            // emojiButton
+            // 
+            this.emojiButton.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.emojiButton.Image = global::NoteAppUI.Properties.Resources.emoji_unfocus;
+            this.emojiButton.Location = new System.Drawing.Point(564, 473);
+            this.emojiButton.Name = "emojiButton";
+            this.emojiButton.Size = new System.Drawing.Size(38, 37);
+            this.emojiButton.TabIndex = 51;
+            this.emojiButton.TabStop = false;
+            this.emojiButton.Click += new System.EventHandler(this.emojiButton_Click);
+            this.emojiButton.MouseEnter += new System.EventHandler(this.emojiButton_MouseEnter);
+            this.emojiButton.MouseLeave += new System.EventHandler(this.emojiButton_MouseLeave);
+            // 
             // NoteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(652, 653);
+            this.ClientSize = new System.Drawing.Size(642, 565);
+            this.Controls.Add(this.emojiButton);
+            this.Controls.Add(this.emojiListView);
+            this.Controls.Add(this.dateTimeCreate);
             this.Controls.Add(this.CategoryComboBox);
             this.Controls.Add(this.titleBox);
             this.Controls.Add(this.backButton);
@@ -188,13 +253,12 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.dateTimeCreate);
             this.Controls.Add(this.labelNoteTitle);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(670, 700);
             this.Name = "NoteForm";
             this.Text = "Создать или изменить заметку";
             this.Load += new System.EventHandler(this.NoteForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.emojiButton)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -210,10 +274,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker dateTimeCreate;
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.TextBox titleBox;
-        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.ComboBox CategoryComboBox;
+        private System.Windows.Forms.DateTimePicker dateTimeCreate;
+        private System.Windows.Forms.ListView emojiListView;
+        private RoundPictureBox emojiButton;
     }
 }
