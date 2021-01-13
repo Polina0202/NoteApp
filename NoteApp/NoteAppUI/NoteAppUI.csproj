@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon_1.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -135,5 +138,20 @@
   <ItemGroup>
     <None Include="Resources\emoji_focus.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon.ico" />
+    <Content Include="Icon_1.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>md "$(SolutionDir)Installers\InstallScripts"
+md "$(SolutionDir)Installers\InstallScripts\Release"
+md "$(SolutionDir)Installers\InstallScripts\Installer"
+xcopy "$(ProjectDir)$(OutDir)*.dll" "$(SolutionDir)Installers\InstallScripts\Release\"
+xcopy "$(ProjectDir)$(OutDir)*.exe" "$(SolutionDir)Installers\InstallScripts\Release\"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>rd /s /q "$(SolutionDir)Installers\InstallScripts\Release"
+rd /s /q "$(SolutionDir)Installers\InstallScripts\Installer"</PreBuildEvent>
+  </PropertyGroup>
 </Project>

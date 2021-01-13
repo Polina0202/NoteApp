@@ -52,13 +52,13 @@
             this.labelNoteTitle = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
             this.dateTimeUpdate = new System.Windows.Forms.DateTimePicker();
-            this.noteBox = new System.Windows.Forms.TextBox();
+            this.noteTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.backButton = new System.Windows.Forms.Button();
-            this.titleBox = new System.Windows.Forms.TextBox();
+            this.titleTextBox = new System.Windows.Forms.TextBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.CategoryComboBox = new System.Windows.Forms.ComboBox();
             this.dateTimeCreate = new System.Windows.Forms.DateTimePicker();
@@ -85,7 +85,7 @@
             this.saveButton.Location = new System.Drawing.Point(357, 522);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(134, 31);
-            this.saveButton.TabIndex = 42;
+            this.saveButton.TabIndex = 6;
             this.saveButton.Text = "Сохранить";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
@@ -98,20 +98,20 @@
             this.dateTimeUpdate.Location = new System.Drawing.Point(442, 110);
             this.dateTimeUpdate.Name = "dateTimeUpdate";
             this.dateTimeUpdate.Size = new System.Drawing.Size(185, 22);
-            this.dateTimeUpdate.TabIndex = 41;
+            this.dateTimeUpdate.TabIndex = 4;
             // 
-            // noteBox
+            // noteTextBox
             // 
-            this.noteBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.noteTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.noteBox.Location = new System.Drawing.Point(12, 141);
-            this.noteBox.Multiline = true;
-            this.noteBox.Name = "noteBox";
-            this.noteBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.noteBox.Size = new System.Drawing.Size(615, 372);
-            this.noteBox.TabIndex = 38;
-            this.noteBox.TextChanged += new System.EventHandler(this.noteBox_TextChanged);
+            this.noteTextBox.Location = new System.Drawing.Point(12, 141);
+            this.noteTextBox.Multiline = true;
+            this.noteTextBox.Name = "noteTextBox";
+            this.noteTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.noteTextBox.Size = new System.Drawing.Size(615, 372);
+            this.noteTextBox.TabIndex = 5;
+            this.noteTextBox.TextChanged += new System.EventHandler(this.noteTextBox_TextChanged);
             // 
             // label5
             // 
@@ -155,21 +155,21 @@
             this.backButton.Location = new System.Drawing.Point(497, 522);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(134, 31);
-            this.backButton.TabIndex = 44;
+            this.backButton.TabIndex = 7;
             this.backButton.Text = "Назад";
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
-            // titleBox
+            // titleTextBox
             // 
-            this.titleBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.titleTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.titleBox.Location = new System.Drawing.Point(123, 45);
-            this.titleBox.MaxLength = 50;
-            this.titleBox.Name = "titleBox";
-            this.titleBox.Size = new System.Drawing.Size(504, 22);
-            this.titleBox.TabIndex = 45;
-            this.titleBox.TextChanged += new System.EventHandler(this.titleBox_TextChanged);
+            this.titleTextBox.Location = new System.Drawing.Point(123, 45);
+            this.titleTextBox.MaxLength = 50;
+            this.titleTextBox.Name = "titleTextBox";
+            this.titleTextBox.Size = new System.Drawing.Size(504, 22);
+            this.titleTextBox.TabIndex = 1;
+            this.titleTextBox.TextChanged += new System.EventHandler(this.titleTextBox_TextChanged);
             // 
             // toolTip
             // 
@@ -182,7 +182,7 @@
             this.CategoryComboBox.Location = new System.Drawing.Point(123, 77);
             this.CategoryComboBox.Name = "CategoryComboBox";
             this.CategoryComboBox.Size = new System.Drawing.Size(185, 24);
-            this.CategoryComboBox.TabIndex = 46;
+            this.CategoryComboBox.TabIndex = 2;
             this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
             // 
             // dateTimeCreate
@@ -193,7 +193,7 @@
             this.dateTimeCreate.Location = new System.Drawing.Point(123, 110);
             this.dateTimeCreate.Name = "dateTimeCreate";
             this.dateTimeCreate.Size = new System.Drawing.Size(185, 22);
-            this.dateTimeCreate.TabIndex = 47;
+            this.dateTimeCreate.TabIndex = 3;
             // 
             // emojiListView
             // 
@@ -245,11 +245,11 @@
             this.Controls.Add(this.emojiListView);
             this.Controls.Add(this.dateTimeCreate);
             this.Controls.Add(this.CategoryComboBox);
-            this.Controls.Add(this.titleBox);
+            this.Controls.Add(this.titleTextBox);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.dateTimeUpdate);
-            this.Controls.Add(this.noteBox);
+            this.Controls.Add(this.noteTextBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
@@ -271,13 +271,13 @@
         private System.Windows.Forms.Label labelNoteTitle;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.DateTimePicker dateTimeUpdate;
-        private System.Windows.Forms.TextBox noteBox;
+        private System.Windows.Forms.TextBox noteTextBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button backButton;
-        private System.Windows.Forms.TextBox titleBox;
+        private System.Windows.Forms.TextBox titleTextBox;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.ComboBox CategoryComboBox;
         private System.Windows.Forms.DateTimePicker dateTimeCreate;

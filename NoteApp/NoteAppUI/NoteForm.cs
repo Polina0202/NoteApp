@@ -25,7 +25,7 @@ namespace NoteAppUI
         bool _isChangeTitle;
         bool _isChangeText;
         bool _isChangeCategory;
-
+        
         private Note _note = new Note();
         /// <summary>
         /// Переменная для временного хранения данных заметок.
@@ -40,14 +40,14 @@ namespace NoteAppUI
             {
                 _note = (Note)value.Clone();
                 
-                titleBox.Text = value.Title;
+                titleTextBox.Text = value.Title;
                 dateTimeCreate.Value = value.CreatedTime;
                 dateTimeUpdate.Value = value.UpdateTime;
-                noteBox.Text = value.Content;
+                noteTextBox.Text = value.Content;
                 CategoryComboBox.Text = GetDescription((value.Category));
                 
-                startTitle = titleBox.Text;
-                startNote = noteBox.Text;
+                startTitle = titleTextBox.Text;
+                startNote = noteTextBox.Text;
                 startCategory = CategoryComboBox.Text;
             }
         }
@@ -94,9 +94,9 @@ namespace NoteAppUI
             }
         }
 
-        private void titleBox_TextChanged(object sender, EventArgs e)
+        private void titleTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (startTitle != titleBox.Text)
+            if (startTitle != titleTextBox.Text)
             {
                 _isChangeTitle = true;
                 titleChande();
@@ -106,27 +106,27 @@ namespace NoteAppUI
                 _isChangeTitle = false;
                 titleChande();
             }
-            
-            if (titleBox.Text.Length < 50)
+
+            if (titleTextBox.Text.Length < 50)
             {
-                titleBox.BackColor = Color.White;
-                labelNoteTitle.Text = titleBox.Text;
+                titleTextBox.BackColor = Color.White;
+                labelNoteTitle.Text = titleTextBox.Text;
 
-                toolTip.Hide(titleBox);
+                toolTip.Hide(titleTextBox);
 
-                if (titleBox.Text.Length == 0)
+                if (titleTextBox.Text.Length == 0)
                     labelNoteTitle.Text = "ЗАМЕТКА";
             }
             else
             {
-                titleBox.BackColor = Color.Tomato;
-                toolTip.Show("Превышено допустимое количество символов", titleBox, 305, 10);
+                titleTextBox.BackColor = Color.Tomato;
+                toolTip.Show("Превышено допустимое количество символов", titleTextBox, 305, 10);
             }
         }
 
-        private void noteBox_TextChanged(object sender, EventArgs e)
+        private void noteTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (startNote != noteBox.Text)
+            if (startNote != noteTextBox.Text)
             {
                 _isChangeText = true;
                 titleChande();
@@ -166,8 +166,8 @@ namespace NoteAppUI
             //сохранение заметки
             UpdateNote();
 
-            titleBox.Clear();
-            noteBox.Clear();
+            titleTextBox.Clear();
+            noteTextBox.Clear();
             CategoryComboBox.SelectedIndex = 0;
             _isChangeTitle = false;
             _isChangeText = false;
@@ -183,11 +183,11 @@ namespace NoteAppUI
         {
             try
             {
-                _Note.Title = titleBox.Text;
+                _Note.Title = titleTextBox.Text;
                 _Note.CreatedTime = dateTimeCreate.Value;
                 _Note.UpdateTime = DateTime.Now;
 ;
-                _Note.Content = noteBox.Text;
+                _Note.Content = noteTextBox.Text;
                 
                 NoteCategory selectedNoteCategory;
                 selectedNoteCategory = (NoteCategory)CategoryComboBox.SelectedIndex;
@@ -235,7 +235,7 @@ namespace NoteAppUI
         {
             for (int i = 0; i < emojiListView.Items.Count; i++)
             {
-                if (emojiListView.Items[i].Selected == true)
+                if ((emojiListView.Items[i].Selected == true))
                     printEmoji(i);
             }
         }
@@ -247,20 +247,19 @@ namespace NoteAppUI
         {
             string stringBeforeCaret = "";
             string stringAfterCaret = "";
-            int caretIndex = noteBox.SelectionStart;
+            int caretIndex = noteTextBox.SelectionStart;
 
-            if ((emojiListView.Items[selectedChar].Selected == true))
+            if (emojiListView.Items[selectedChar].Selected == true)
             {
-                stringBeforeCaret = noteBox.Text.Substring(0, noteBox.SelectionStart);
-                if ((noteBox.Text.Length > 0) && (noteBox.SelectionStart != noteBox.Text.Length))
+                stringBeforeCaret = noteTextBox.Text.Substring(0, noteTextBox.SelectionStart);
+                if ((noteTextBox.Text.Length > 0) && (noteTextBox.SelectionStart != noteTextBox.Text.Length))
                 {
-                    stringAfterCaret = noteBox.Text.Substring(noteBox.SelectionStart, noteBox.Text.Length - noteBox.SelectionStart);
+                    stringAfterCaret = noteTextBox.Text.Substring(noteTextBox.SelectionStart, noteTextBox.Text.Length - noteTextBox.SelectionStart);
                 }
                 stringBeforeCaret += emojiListView.Items[selectedChar].Text;
                 stringBeforeCaret += stringAfterCaret;
-                noteBox.Text = stringBeforeCaret;
-                noteBox.SelectionStart = caretIndex + 1;
-                noteBox.Focus();
+                noteTextBox.Text = stringBeforeCaret;
+                noteTextBox.SelectionStart = caretIndex + 1;
             }
         }
 
