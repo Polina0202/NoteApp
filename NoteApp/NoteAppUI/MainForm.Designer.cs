@@ -259,7 +259,7 @@
             this.pictureEditBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureEditBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureEditBox.Image = global::NoteAppUI.Properties.Resources.edit_unfocus;
-            this.pictureEditBox.Location = new System.Drawing.Point(118, 544);
+            this.pictureEditBox.Location = new System.Drawing.Point(65, 544);
             this.pictureEditBox.Name = "pictureEditBox";
             this.pictureEditBox.Size = new System.Drawing.Size(53, 47);
             this.pictureEditBox.TabIndex = 8;
@@ -273,7 +273,7 @@
             this.pictureDeleteBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureDeleteBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureDeleteBox.Image = global::NoteAppUI.Properties.Resources.delete_unfocus;
-            this.pictureDeleteBox.Location = new System.Drawing.Point(65, 544);
+            this.pictureDeleteBox.Location = new System.Drawing.Point(124, 544);
             this.pictureDeleteBox.Name = "pictureDeleteBox";
             this.pictureDeleteBox.Size = new System.Drawing.Size(47, 47);
             this.pictureDeleteBox.TabIndex = 8;
@@ -311,7 +311,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1191, 650);
             this.Name = "MainForm";
-            this.Text = "Коллекция ваших заметок";
+            this.Text = "Записная книжка";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
